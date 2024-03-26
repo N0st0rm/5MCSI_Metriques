@@ -5,37 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <style>
-        /* Styles CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #FFD166; /* Jaune */
         }
+
         .container {
-            width: 80%;
+            width: 60%;
             margin: auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #EF476F; /* Rouge */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 50px;
         }
+
         h1 {
             text-align: center;
+            color: #FFF; /* Blanc */
         }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        label {
+            color: #FFF; /* Blanc */
+        }
+
         input[type="text"], textarea {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
-            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
         }
+
         input[type="submit"] {
             width: 100%;
-            background-color: #4CAF50;
+            background-color: #06D6A0; /* Vert */
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
@@ -43,29 +56,30 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #00A896; /* Vert plus foncé */
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Contact Us</h1>
+    <h1>Contactez-nous</h1>
     <form action="#" method="post">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+        <label for="fname">Prénom</label>
+        <input type="text" id="fname" name="firstname" placeholder="Votre prénom..">
 
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <label for="lname">Nom</label>
+        <input type="text" id="lname" name="lastname" placeholder="Votre nom..">
 
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Your email..">
+        <input type="text" id="email" name="email" placeholder="Votre email..">
 
         <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+        <textarea id="message" name="message" placeholder="Écrivez quelque chose.." style="height:200px"></textarea>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Envoyer">
     </form>
 </div>
 
