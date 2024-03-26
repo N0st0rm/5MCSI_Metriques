@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphique des commits par minute</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="graph"></div>
+    <script>
+        // Données fictives pour l'exemple
+        var minutes = [0, 1, 2, 3, 4, 5];
+        var commits_count = [5, 10, 8, 12, 7, 11];
+
+        var data = [{
+            x: minutes,
+            y: commits_count,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: {color: 'red'},
+            line: {shape: 'spline'}
+        }];
+        var layout = {
+            title: 'Commits par minute',
+            xaxis: {title: 'Minute'},
+            yaxis: {title: 'Nombre de commits'}
+        };
+        Plotly.newPlot('graph', data, layout);
+    </script>
+</body>
+</html>
