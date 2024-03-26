@@ -4,6 +4,9 @@ from flask import json
 from datetime import datetime
 from urllib.request import urlopen
 import sqlite3
+import requests
+from datetime import datetime
+from jinja2 import Template
                                                                                                                                        
 app = Flask(__name__)
 
@@ -26,10 +29,6 @@ def meteo():
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
-
-import requests
-from datetime import datetime
-from jinja2 import Template
 
 response = requests.get('https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits')
 commits_data = response.json()
