@@ -9,7 +9,7 @@
 <body>
     <canvas id="commitsChart" width="800" height="400"></canvas>
     <script>
-        fetch('https://api.github.com/repos/fdvodkax/5MCSI_Metriques/commits')
+        fetch('https://api.github.com/repos/N0st0rm/5MCSI_Metriques/commits')
             .then(response => response.json())
             .then(data => {
                 const commitMinutes = data.map(commit => {
