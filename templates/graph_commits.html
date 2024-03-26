@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graphique des commits par minute</title>
+    <!-- Inclure Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <div id="graph"></div>
+    <div id="commitGraph"></div>
+
     <script>
-        var minutes = {{ minutes }};
-        var commits_count = {{ commits_count }};
+        // Code JavaScript pour charger les données des commits et créer le graphique
+        fetch('https://{Votre URL}/commits/')
+            .then(response => response.json())
+            .then(data => {
+                const minutes = Object.keys(data);
+                const commits = Object.values(data);
 
-        var data = [{
-            x: minutes,
-            y: commits_count,
-            type: 'scatter',
-            mode: 'lines+markers',
-            marker: {color: 'red'},
-            line: {shape: 'spline'}
-        }];
+                // Créer le graphique
+                const trace = {
+                    x: minutes,
+                    y: commits,
+                    type: 'bar',
+                    marker: {
+                        color: 'rgb(55, 83, 109)'
+                    }
+                };
 
-        var layout = {
-            title: 'Commits par minute',
-            xaxis: {title: 'Minute'},
-            yaxis: {title: 'Nombre de commits'}
-        };
+                const layout = {
+                    title: 'Nombre de commits par minute',
+                    xaxis: {
+                        title: 'Minute',
+                    },
+                    yaxis: {
+                        title: 'Nombre de commits',
+                    },
+                    bargap: 0.05
+                };
 
-        Plotly.newPlot('graph', data, layout);
+                Plotly.newPlot('commitGraph', [trace], layout);
+            });
     </script>
 </body>
 </html>
