@@ -27,13 +27,31 @@ def meteo():
 def hello_world():
     return render_template('hello.html')
 
-@app.route('/commits/')
-def serve_commits_graph():
-    return send_file('graph_commits.html')
+import requests
+from datetime import datetime
+from jinja2 import Template
 
-if __name__ == '__main__':
-    app.run(debug=True)
+response = requests.get('https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits')
+commits_data = response.json()
 
+commits_per_minute = {}
+for commit in commits_data:
+    commit_date = commit['commit']['author']['date']
+    date_object = datetime.strptime(commit_date, '%Y-%m-%dT%H:%M:%SZ')
+    minute = date_object.minute
+    commits_per_minute[minute] = commits_per_minute.get(minute, 0) + 1
+
+minutes = list(commits_per_minute.keys())
+commits_count = list(commits_per_minute.values())
+
+with open('graph_commits.html', 'r') as file:
+    template_content = file.read()
+
+template = Template(template_content)
+rendered_html = template.render(minutes=minutes, commits_count=commits_count)
+
+with open('rendered_graph_commits.html', 'w') as output_file:
+    output_file.write(rendered_html)
 
 @app.route("/rapport/")
 def mongraphique():
