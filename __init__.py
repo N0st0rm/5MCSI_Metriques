@@ -27,6 +27,14 @@ def meteo():
 def hello_world():
     return render_template('hello.html')
 
+@app.route('/commits/')
+def serve_commits_graph():
+    return send_file('graph_commits.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 @app.route("/rapport/")
 def mongraphique():
     return render_template("graphique.html")
